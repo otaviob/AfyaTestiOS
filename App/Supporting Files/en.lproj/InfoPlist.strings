@@ -1,0 +1,6 @@
+/* 
+  InfoPlist.strings
+  App
+  Created by Otavio Brito on 05/04/21.
+*/
+"NSFaceIDUsageDescription" = "Face ID is used to secure your data.";

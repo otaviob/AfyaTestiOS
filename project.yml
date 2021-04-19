@@ -1,0 +1,101 @@
+name: TvMaze
+options:
+  bundleIdPrefix: br.com.fernandodelrio
+  deploymentTarget:
+    iOS: 9.0
+settings:
+  SWIFT_VERSION: 5.0
+targets:
+  App:
+    type: application
+    platform: iOS
+    sources: [App]
+    settings:
+      TARGET_NAME: "TvMaze"
+    dependencies:
+      - target: Features
+      - target: Core
+      - target: Cloud
+      - target: Database
+      - target: Secure
+      - target: Auth
+    postCompileScripts:
+      - script: ${PODS_ROOT}/SwiftLint/swiftlint
+        name: Swiftlint
+  Core:
+    type: framework
+    platform: iOS
+    sources: [Core]
+  Features:
+    type: framework
+    platform: iOS
+    sources: [Features]
+    dependencies:
+      - target: Core
+  Cloud:
+    type: framework
+    platform: iOS
+    sources: [Cloud]
+    dependencies:
+      - target: Core
+  Database:
+    type: framework
+    platform: iOS
+    sources: [Database]
+    dependencies:
+      - target: Core
+      - target: Cloud
+      - sdk: CoreData.framework
+  Secure:
+    type: framework
+    platform: iOS
+    sources: [Secure]
+    dependencies:
+      - target: Core
+  Auth:
+    type: framework
+    platform: iOS
+    sources: [Auth]
+    dependencies:
+      - target: Core
+  UnitTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: [UnitTests]
+    dependencies:
+      - target: App
+    settings:
+      TEST_HOST: "$(BUILT_PRODUCTS_DIR)/TvMaze.app/TvMaze"
+  UITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources: [UITests]
+    dependencies:
+      - target: App
+      - target: Features
+      - target: Core
+      - target: Cloud
+      - target: Database
+      - target: Secure
+      - target: Auth
+schemes:
+  TvMaze Debug:
+    build:
+      targets:
+        App: all
+        Features: all
+        Core: all
+        Cloud: all
+        Database: all
+        Secure: all
+        Auth: all
+        UnitTests: [test]
+        UITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - name: UnitTests
+        - name: UITests
+      gatherCoverageData: true
