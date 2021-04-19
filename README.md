@@ -1,8 +1,3 @@
-# ![](https://raw.githubusercontent.com/fernandodelrio/TvMazeApp/master/Documentation/images/app-icon.png "App Icon") TvMaze App
-
-This repository contains the code for an iOS app I built for a 5 days coding challenge. The idea was to build an iPhone app consuming an API that provides TV data about series, episodes and people.
-
-http://www.tvmaze.com/api
 
 ## The requirements: 
 * The user should be able to see a list of shows the API provides using a pagination mechanism
